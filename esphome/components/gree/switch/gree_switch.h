@@ -19,4 +19,18 @@ class GreeModeBitSwitch final : public switch_::Switch, public Component, public
   uint8_t bit_mask_;
 };
 
+// Feature types for YB1FA boolean switches
+enum class Yb1faSwitchFeature : uint8_t { TURBO, XFAN, LIGHT, SLEEP };
+
+// YB1FA switch — same schema type as GreeModeBitSwitch (subclass), different write_state.
+class GreeYb1faBoolSwitch final : public GreeModeBitSwitch {
+ public:
+  GreeYb1faBoolSwitch(const char *name, Yb1faSwitchFeature feature) : GreeModeBitSwitch(name, 0), feature_(feature) {}
+
+  void write_state(bool state) override;
+
+ protected:
+  Yb1faSwitchFeature feature_;
+};
+
 }  // namespace esphome::gree

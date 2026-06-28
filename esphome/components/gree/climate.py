@@ -1,9 +1,9 @@
 import esphome.codegen as cg
 from esphome.components import climate_ir
 import esphome.config_validation as cv
-from esphome.const import CONF_MODEL
+from esphome.const import CONF_ID, CONF_MODEL
 
-from . import gree_ns
+from . import gree_ns, set_climate_model
 
 CODEOWNERS = ["@orestismers"]
 
@@ -17,6 +17,7 @@ MODELS = {
     "yaa": Model.GREE_YAA,
     "yac": Model.GREE_YAC,
     "yac1fb9": Model.GREE_YAC1FB9,
+    "yb1fa": Model.GREE_YB1FA,
     "yx1ff": Model.GREE_YX1FF,
     "yag": Model.GREE_YAG,
 }
@@ -31,3 +32,4 @@ CONFIG_SCHEMA = climate_ir.climate_ir_with_receiver_schema(GreeClimate).extend(
 async def to_code(config):
     var = await climate_ir.new_climate_ir(config)
     cg.add(var.set_model(config[CONF_MODEL]))
+    set_climate_model(config[CONF_ID], config[CONF_MODEL])

@@ -19,4 +19,22 @@ void GreeModeBitSwitch::write_state(bool state) {
   this->publish_state(state);
 }
 
+void GreeYb1faBoolSwitch::write_state(bool state) {
+  switch (this->feature_) {
+    case Yb1faSwitchFeature::TURBO:
+      this->parent_->yb1fa_set_turbo(state);
+      break;
+    case Yb1faSwitchFeature::XFAN:
+      this->parent_->yb1fa_set_xfan(state);
+      break;
+    case Yb1faSwitchFeature::LIGHT:
+      this->parent_->yb1fa_set_light(state);
+      break;
+    case Yb1faSwitchFeature::SLEEP:
+      this->parent_->yb1fa_set_sleep(state);
+      break;
+  }
+  this->publish_state(state);
+}
+
 }  // namespace esphome::gree

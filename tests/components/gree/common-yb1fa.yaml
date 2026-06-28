@@ -1,0 +1,26 @@
+climate:
+  - platform: gree
+    name: GREE YB1FA
+    id: my_gree_yb1fa
+    model: YB1FA
+    transmitter_id: xmitr
+
+switch:
+  - platform: gree
+    gree_id: my_gree_yb1fa
+    turbo:
+      name: "AC Turbo"
+    xfan:
+      name: "AC X-Fan"
+    light:
+      name: "AC Light"
+    sleep:
+      name: "AC Sleep"
+
+select:
+  - platform: gree
+    gree_id: my_gree_yb1fa
+    vane:
+      name: "AC Vane"
+    temp_display:
+      name: "AC Temp Display"
